@@ -24,54 +24,17 @@ int32_t main()
     return 0;
 }
 
-string BriefWord(string n, int k)
-{
-    stack<char> s;
-    int len = n.length();
-    for (int i = 0; i < len; i++)
-    {
-        if (s.empty())
-        {
-            s.push(n[i]);
-        }
-        else if (s.top() > n[i])
-        {
-            while (!s.empty() && s.top() > n[i] && k > 0)
-            {
-                s.pop();
-                k--;
-            }
-            s.push(n[i]);
-        }
-        else if (s.top() <= n[i])
-            s.push(n[i]);
-    }
-    while (k > 0)
-    {
-        s.pop();
-        k--;
-    }
-    string a;
-    while (!s.empty())
-    {
-        a.push_back(s.top());
-        s.pop();
-    }
-    reverse(a.begin(), a.end());
-    if (a == "")
-        return "0";
-    int x = 0;
-    while (a[x] == '0')
-        x++;
-    if (x > 0)
-        return a.substr(x, a.size() - x) != "" ? a.substr(x, a.size() - x) : "0";
-    return a;
-}
 void cases()
 {
     string s;
     cin >> s;
-    int k;
-    cin >> k;
-    cout << BriefWord(s, k) << endl;
+    for (int i = 0; i < 3; i++)
+    {
+        cout << s[i] << s[i + 1] << " ";
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        cout << s[i] << s[i + 1] << s[i + 2] << " ";
+    }
+    cout << endl;
 }
